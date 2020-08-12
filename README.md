@@ -1,5 +1,7 @@
 # Ansible Role: log2ram
 
+![Ansible Molecule](https://github.com/chzerv/ansible-role-log2ram/workflows/Ansible%20Molecule/badge.svg)
+
 This role installs and configures [log2ram](https://github.com/azlux/log2ram) on Debian, Ubuntu, Archlinux, CentOS and Fedora systems. `log2ram` is mostly useful on systems which use an SD Card, like for example a Raspberry-Pi.
 
 On Debian-based systems, the role uses the author's unofficial repository. On other distributions the installation is done manually.
