@@ -18,6 +18,7 @@
   register: log2ram_is_installed
   changed_when: false
   failed_when: false
+  when: not ansible_os_family == "Debian"
 
 - name: Set fact about installed packages in Debian.
   set_fact:
