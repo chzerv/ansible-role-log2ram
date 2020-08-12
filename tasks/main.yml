@@ -48,3 +48,9 @@
   when:
     - log2ram_state == "remove"
     - log2ram_installed | bool
+
+- name: Update log2ram.
+  include_tasks: update.yml
+  when:
+    - log2ram_state == "update"
+    - log2ram_installed | bool
