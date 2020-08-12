@@ -1,2 +1,9 @@
 ---
-# defaults file for log2ram
+log2ram_enable_on_boot: true
+log2ram_reboot_after_install: true
+
+log2ram_size: "40M"
+log2ram_use_rsync: "false"
+log2ram_mail: "false"
+log2ram_path_disk: "/var/log"
+log2ram_use_zl2r: "false"
