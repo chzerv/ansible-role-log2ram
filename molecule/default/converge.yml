@@ -17,4 +17,4 @@
   tasks:
     - name: "Include log2ram"
       include_role:
-        name: "log2ram"
+        name: "ansible-role-log2ram"
