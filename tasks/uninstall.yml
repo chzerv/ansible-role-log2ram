@@ -1,7 +1,4 @@
 ---
-- name: Gather service facts.
-  service_facts:
-
 - name: Stop and disable the log2ram service.
   service:
     name: log2ram

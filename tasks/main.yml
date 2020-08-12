@@ -13,6 +13,9 @@
     manager: auto
   when: ansible_os_family == "Debian"
 
+- name: Gather service facts.
+  service_facts:
+
 - name: Check if log2ram is installed (Non-Debian systems).
   command: ls -l /usr/local/bin/log2ram
   register: log2ram_is_installed
