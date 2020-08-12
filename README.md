@@ -60,6 +60,12 @@ log2ram_path_disk: "/var/log"
 log2ram_use_zl2r: "false"
 ```
 
+```yaml
+log2ram_compression_algorithm: "lz4"
+```
+
+> The compression algorithm used for zram. Check the project's [README](https://github.com/azlux/log2ram#install) for more information.
+
 > Whether to enable `zram` compatibility. **Note** that zram **must** be already enabled and configured on the device if you want to use this.
 
 ## Dependencies
@@ -91,6 +97,7 @@ log2ram_use_rsync: "false"
 log2ram_mail: "true"
 log2ram_path_disk: "/var/log"
 log2ram_use_zl2r: "false"
+log2ram_compression_algorithm: "lz4"
 ```
 
 ## License
