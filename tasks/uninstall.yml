@@ -16,6 +16,7 @@
   file:
     dest: /usr/local/bin/uninstall-log2ram.sh
     mode: u+x
+  when: not ansible_os_family == "Debian"
 
 - name: Run the uninstall script (Non-Debian systems).
   command:
@@ -23,3 +24,4 @@
     chdir: /usr/local/bin
     warn: false
   changed_when: false
+  when: not ansible_os_family == "Debian"
