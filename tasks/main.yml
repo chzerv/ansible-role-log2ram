@@ -1,2 +1,4 @@
 ---
-# tasks file for log2ram
+- name: Install log2ram
+  include_tasks: "installation-{{ ansible_os_family }}.yml"
+  when: log2ram_state == "install"

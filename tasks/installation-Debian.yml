@@ -1,0 +1,41 @@
+---
+- name: Update apt cache.
+  apt:
+    update_cache: true
+
+- name: Install required packages.
+  apt:
+    name:
+      - apt-transport-https
+      - gpg
+    state: present
+
+- name: Create log2ram repository source.
+  template:
+    src: etc/apt/sources.list.d/log2ram.list.j2
+    dest: /etc/apt/sources.list.d/log2ram.list
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Retrieve log2ram repository key.
+  apt_key:
+    url: https://azlux.fr/repo.gpg.key
+    state: present
+
+- name: Update apt cache after log2ram repository is enabled.
+  apt:
+    update_cache: true
+
+- name: Upgrade packages after log2ram repository is enabled.
+  apt:
+    upgrade: dist
+
+- name: Install log2ram.
+  apt:
+    name: log2ram
+    state: present
+
+- name: Reboot system after log2ram is installed.
+  reboot:
+  when: log2ram_reboot_after_install | bool
