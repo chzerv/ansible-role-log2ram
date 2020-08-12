@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include log2ram"
+      include_role:
+        name: "log2ram"
