@@ -54,3 +54,7 @@
   when:
     - log2ram_state == "update"
     - log2ram_installed | bool
+
+- name: Configure log2ram.
+  include_tasks: configuration.yml
+  when: log2ram_installed | bool
