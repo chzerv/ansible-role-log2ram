@@ -13,7 +13,7 @@
     manager: auto
   when: ansible_os_family == "Debian"
 
-- name: Check if log2ram is isntalled (Non-Debian systems).
+- name: Check if log2ram is installed (Non-Debian systems).
   command: ls -l /usr/local/bin/log2ram
   register: log2ram_is_installed
   changed_when: false
@@ -22,16 +22,26 @@
 
 - name: Set fact about installed packages in Debian.
   set_fact:
-    log2ram_installed: "{{ ansible_facts.packages }}"
-  when: ansible_os_family == "Debian"
+    log2ram_installed: "{{ 'true' if 'log2ram' in ansible_facts.packages else 'false' }}"
+  when:
+    - ansible_os_family == "Debian"
 
 - name: Set fact about installed packages in Non-Debian.
   set_fact:
-    log2ram_installed: "{{ log2ram_is_installed.stdout }}"
-  when: not ansible_os_family == "Debian"
+    log2ram_installed: "{{ 'true' if log2ram_is_installed.stdout | length > 0 else 'false' }}"
+  when:
+    - not ansible_os_family == "Debian"
+
+- name: Assert
+  assert:
+    that:
+      - log2ram_installed | bool
+    fail_msg: "log2ram installation failed!"
+    success_msg: "log2ram installation was successful."
+  when: log2ram_state == "install"
 
 - name: Uninstall log2ram.
   include_tasks: uninstall.yml
   when:
     - log2ram_state == "remove"
-    - log2ram_installed | length > 0
+    - log2ram_installed | bool
