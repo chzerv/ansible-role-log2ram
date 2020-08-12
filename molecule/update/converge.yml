@@ -3,7 +3,7 @@
   hosts: all
 
   vars:
-    log2ram_state: install
+    log2ram_state: update
 
   pre_tasks:
     - name: Update apt cache on Debian systems.
