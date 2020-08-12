@@ -14,7 +14,7 @@
 
 - name: Make the uninstall script executable (Non-Debian systems).
   file:
-    dest: /usr/local/bin/uninstall-log2ram.sh
+    path: /usr/local/bin/uninstall-log2ram.sh
     mode: u+x
   when: not ansible_os_family == "Debian"
 

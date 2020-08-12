@@ -1,7 +1,7 @@
 ---
 - name: Create downloads folder.
   file:
-    dest: "{{ ansible_user_dir }}/.log2ram"
+    path: "{{ ansible_user_dir }}/.log2ram"
     state: directory
     mode: 0700
 
@@ -18,7 +18,7 @@
 
 - name: Set execute permissions on the install script.
   file:
-    dest: "{{ ansible_user_dir }}/.log2ram/log2ram-master/install.sh"
+    path: "{{ ansible_user_dir }}/.log2ram/log2ram-master/install.sh"
     mode: u+x
 
 - name: Run the installation script.
