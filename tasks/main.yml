@@ -1,4 +1,9 @@
 ---
-- name: Install log2ram
-  include_tasks: "installation-{{ ansible_os_family }}.yml"
+- name: Install log2ram.
+  include_tasks: "{{ item }}"
+  vars:
+    files:
+      - "installation-{{ ansible_os_family }}.yml"
+      - installation.yml
+  loop: "{{ q('first_found', files, errors='ignore' ) }}"
   when: log2ram_state == "install"
