@@ -1,0 +1,25 @@
+---
+- name: Stop and disable the log2ram service.
+  service:
+    name: log2ram
+    state: stopped
+    enabled: false
+
+- name: Uninstall log2ram through apt (Debian-based systems).
+  apt:
+    name: log2ram
+    state: absent
+    purge: true
+  when: ansible_os_family == "Debian"
+
+- name: Make the uninstall script executable (Non-Debian systems).
+  file:
+    dest: /usr/local/bin/uninstall-log2ram.sh
+    mode: u+x
+
+- name: Run the uninstall script (Non-Debian systems).
+  command:
+    cmd: "sh uninstall-log2ram.sh"
+    chdir: /usr/local/bin
+    warn: false
+  changed_when: false
