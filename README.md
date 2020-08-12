@@ -23,6 +23,16 @@ log2ram_reboot_after_install: false
 > The project's author recommends to reboot the machine after installing log2ram. **Note** that Ansible will wait for the systems to come back up and continue with the rest of the tasks.
 
 ```yaml
+log2ram_state: install
+```
+
+> Possible values are:
+>
+> - `install` to install log2ram,
+> - `remove` to uninstall log2ram and
+> - `update` to update log2ram.
+
+```yaml
 log2ram_size: "40M"
 ```
 
