@@ -1,0 +1,26 @@
+---
+- name: Create downloads folder.
+  file:
+    dest: "{{ ansible_user_dir }}/.log2ram"
+    state: directory
+    mode: 0700
+
+- name: Download log2ram archive.
+  get_url:
+    url: https://github.com/azlux/log2ram/archive/master.tar.gz
+    dest: "{{ ansible_user_dir }}/.log2ram/log2ram.tar.gz"
+
+- name: Extract downloaded archive.
+  unarchive:
+    src: "{{ ansible_user_dir }}/.log2ram/log2ram.tar.gz"
+    dest: "{{ ansible_user_dir }}/.log2ram/"
+    remote_src: true
+
+- name: Set execute permissions on the install script.
+  file:
+    dest: "{{ ansible_user_dir }}/.log2ram/log2ram-master/install.sh"
+    mode: u+x
+
+- name: Run the installation script.
+  shell: "cd {{ ansible_user_dir }}/.log2ram/log2ram-master && sh install.sh"
+  changed_when: false
