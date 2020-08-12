@@ -24,3 +24,7 @@
 - name: Run the installation script.
   shell: "cd {{ ansible_user_dir }}/.log2ram/log2ram-master && sh install.sh"
   changed_when: false
+
+- name: Reboot system after log2ram is installed.
+  reboot:
+  when: log2ram_reboot_after_install | bool
