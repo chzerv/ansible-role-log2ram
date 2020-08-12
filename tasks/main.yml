@@ -58,3 +58,9 @@
 - name: Configure log2ram.
   include_tasks: configuration.yml
   when: log2ram_installed | bool
+
+- name: Ensure log2ram is started and enabled on boot.
+  service:
+    name: log2ram
+    state: started
+    enabled: true
