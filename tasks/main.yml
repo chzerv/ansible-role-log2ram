@@ -64,3 +64,4 @@
     name: log2ram
     state: started
     enabled: true
+  when: log2ram_installed | bool
