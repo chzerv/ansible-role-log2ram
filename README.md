@@ -62,13 +62,20 @@ log2ram_path_disk: "/var/log"
 log2ram_use_zl2r: "false"
 ```
 
+> Whether to enable `zram` compatibility. **Note** that zram **must** be already enabled and configured on the device if you want to use this.
+
 ```yaml
 log2ram_compression_algorithm: "lz4"
 ```
 
 > The compression algorithm used for zram. Check the project's [README](https://github.com/azlux/log2ram#install) for more information.
 
-> Whether to enable `zram` compatibility. **Note** that zram **must** be already enabled and configured on the device if you want to use this.
+```yaml
+log2ram_log_disk_size: "100M"
+```
+
+> The uncompressed zram size.
+
 
 ## Dependencies
 
