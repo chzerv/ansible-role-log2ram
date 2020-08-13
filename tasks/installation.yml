@@ -23,7 +23,7 @@
     mode: u+x
 
 - name: Run the installation script.
-  shell:
+  command:
     cmd: "sh install.sh"
     chdir: "{{ ansible_user_dir }}/.log2ram/log2ram-master"
   changed_when: false
