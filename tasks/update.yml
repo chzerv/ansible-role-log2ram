@@ -13,7 +13,7 @@
         state: stopped
       when: ansible_facts.services['log2ram.service'].state == "running"
 
-    - name: Delete the old log2ram directory contents.
+    - name: Delete the old log2ram directory contents (Non-Debian systems).
       file:
         path: "{{ ansible_user_dir }}/.log2ram"
         state: absent

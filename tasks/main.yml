@@ -13,9 +13,6 @@
     manager: auto
   when: ansible_os_family == "Debian"
 
-- name: Gather service facts.
-  service_facts:
-
 - name: Check if log2ram is installed (Non-Debian systems).
   stat:
     path: /usr/local/bin/log2ram
@@ -34,26 +31,6 @@
   when:
     - not ansible_os_family == "Debian"
 
-- name: Assert
-  assert:
-    that:
-      - log2ram_installed | bool
-    fail_msg: "log2ram installation failed!"
-    success_msg: "log2ram installation was successful."
-  when: log2ram_state == "install"
-
-- name: Uninstall log2ram.
-  include_tasks: uninstall.yml
-  when:
-    - log2ram_state == "remove"
-    - log2ram_installed | bool
-
-- name: Update log2ram.
-  include_tasks: update.yml
-  when:
-    - log2ram_state == "update"
-    - log2ram_installed | bool
-
 - name: Configure log2ram.
   include_tasks: configuration.yml
   when:
@@ -69,3 +46,26 @@
     - log2ram_installed | bool
     - not log2ram_state == "remove"
   ignore_errors: true
+
+- name: Assert
+  assert:
+    that:
+      - log2ram_installed | bool
+    fail_msg: "log2ram installation failed!"
+    success_msg: "log2ram installation was successful."
+  when: log2ram_state == "install"
+
+- name: Gather service facts.
+  service_facts:
+
+- name: Uninstall log2ram.
+  include_tasks: uninstall.yml
+  when:
+    - log2ram_state == "remove"
+    - log2ram_installed | bool
+
+- name: Update log2ram.
+  include_tasks: update.yml
+  when:
+    - log2ram_state == "update"
+    - log2ram_installed | bool
