@@ -3,7 +3,7 @@
   hosts: all
 
   vars:
-    log2ram_state: remove
+    log2ram_state: install
 
   pre_tasks:
     - name: Update apt cache on Debian systems.
@@ -18,6 +18,14 @@
       when: ansible_os_family == "Archlinux"
 
   tasks:
+    - name: "Include log2ram"
+      include_role:
+        name: "ansible-role-log2ram"
+
+    - name: Remove log2ram.
+      set_fact:
+        log2ram_state: remove
+
     - name: "Include log2ram"
       include_role:
         name: "ansible-role-log2ram"
