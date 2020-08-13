@@ -9,6 +9,7 @@
   get_url:
     url: https://github.com/azlux/log2ram/archive/master.tar.gz
     dest: "{{ ansible_user_dir }}/.log2ram/log2ram.tar.gz"
+    mode: 0600
 
 - name: Extract downloaded archive.
   unarchive:
