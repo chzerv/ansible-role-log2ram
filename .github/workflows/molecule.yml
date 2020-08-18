@@ -8,7 +8,7 @@ name: Ansible Molecule
     paths-ignore:
       - "README.md"
   schedule:
-    - cron: 0 23 * * *
+    - cron: 5 8 * * 1
 
 jobs:
   test:
