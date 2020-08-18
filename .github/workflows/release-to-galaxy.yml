@@ -3,7 +3,7 @@ name: Import to Ansible Galaxy
 on:
   push:
   schedule:
-    - cron: 30 8 * * 1
+    - cron: "30 8 * * 1"
 
 jobs:
   import:
