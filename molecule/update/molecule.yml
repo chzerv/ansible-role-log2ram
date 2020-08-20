@@ -5,6 +5,7 @@ driver:
   name: docker
 lint: |
   set -e
+  PATH=${PATH}
   yamllint .
   ansible-lint
 platforms:
