@@ -16,6 +16,7 @@
     src: "{{ ansible_user_dir }}/.log2ram/log2ram.tar.gz"
     dest: "{{ ansible_user_dir }}/.log2ram/"
     remote_src: true
+    mode: 0644
 
 - name: Set execute permissions on the install script.
   file:

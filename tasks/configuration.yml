@@ -6,6 +6,7 @@
     line: "{{ item.line }}"
     state: present
     backup: true
+    mode: 0644
   with_items:
     - regexp: "^SIZE"
       line: "SIZE={{ log2ram_size }}"
