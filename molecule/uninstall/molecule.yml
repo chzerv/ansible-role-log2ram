@@ -18,6 +18,7 @@ platforms:
 provisioner:
   name: ansible
   playbooks:
+    prepare: "../default/converge.yml"
     converge: "${MOLECULE_PLAYBOOK:-converge.yml}"
 scenario:
   test_sequence:

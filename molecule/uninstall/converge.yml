@@ -18,11 +18,7 @@
       when: ansible_os_family == "Archlinux"
 
   tasks:
-    - name: "Include log2ram"
-      include_role:
-        name: "ansible-role-log2ram"
-
-    - name: Remove log2ram.
+    - name: Set correct variable to remove log2ram.
       set_fact:
         log2ram_state: remove
 
