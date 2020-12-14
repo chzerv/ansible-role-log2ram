@@ -32,9 +32,9 @@ jobs:
           - image: "fedora"
             tag: "latest"
           - image: "fedora"
-            tag: "31"
+            tag: "32"
           - image: "fedora"
-            tag: "30"
+            tag: "31"
           - image: "archlinux"
             tag: latest
 
