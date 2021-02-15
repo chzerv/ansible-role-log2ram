@@ -1,0 +1,68 @@
+---
+name: Test and release.
+"on":
+  pull_request:
+  push:
+    paths-ignore:
+      - "README.md"
+  schedule:
+    - cron: "5 8 * * 1"
+
+jobs:
+  test:
+    name: Molecule test.
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        config:
+          - image: "debian10"
+            tag: latest
+          - image: "debian9"
+            tag: latest
+          - image: "ubuntu2010"
+            tag: latest
+          - image: "ubuntu2004"
+            tag: latest
+          - image: "ubuntu1804"
+            tag: latest
+          - image: "centos8"
+            tag: latest
+          - image: "centos7"
+            tag: latest
+          - image: "fedora33"
+            tag: latest
+          - image: "fedora32"
+            tag: latest
+          # - image: "archlinux"
+          #   tag: latest
+
+    steps:
+      - name: Checkout.
+        uses: actions/checkout@v2
+
+      - name: Set up python3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install test dependencies.
+        run: |
+          pip3 install docker yamllint ansible ansible-lint molecule molecule-docker
+
+      - name: Run molecule test.
+        run: molecule test
+        env:
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"
+          IMAGE: ${{ matrix.config.image }}
+          TAG: ${{ matrix.config.tag }}
+
+  release-to-galaxy:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Release to Ansible Galaxy.
+        uses: robertdebock/galaxy-action@1.0.1
+        with:
+          galaxy_api_key: ${{ secrets.galaxy_api_key }}

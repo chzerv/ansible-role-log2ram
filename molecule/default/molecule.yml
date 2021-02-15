@@ -9,7 +9,7 @@ lint: |
   ansible-lint
 platforms:
   - name: instance
-    image: "chzerv/docker-${IMAGE:-debian}-ansible:${TAG:-latest}"
+    image: "chzerv/${IMAGE:-fedora33}-systemd-ansible:${TAG:-latest}"
     command: ${DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
