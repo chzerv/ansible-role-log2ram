@@ -45,7 +45,6 @@
   when:
     - log2ram_installed | bool
     - not log2ram_state == "remove"
-  ignore_errors: true
 
 - name: Assert
   assert:
