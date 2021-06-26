@@ -9,9 +9,9 @@ galaxy_info:
   platforms:
     - name: Fedora
       versions:
-        - 30
-        - 31
         - 32
+        - 33
+        - 34
     - name: CentOS
       versions:
         - 7
