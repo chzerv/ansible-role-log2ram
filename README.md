@@ -14,6 +14,8 @@ None.
 
 ## Role Variables
 
+Below is a list of the available variables and their default values. Make sure to also check the `defaults/main.yml` file.
+
 ```yaml
 log2ram_enable_on_boot: true
 ```
@@ -43,10 +45,10 @@ log2ram_size: "40M"
 > The ramdisk size. In case of the error `/var/log.hdd/ doesn't exist.Can't sync.`, the size has to be increased to a value > 40M!
 
 ```yaml
-log2ram_use_rsync: "false"
+log2ram_use_rsync: "true"
 ```
 
-> Whether to use `rsync` instead of `cp`.
+> Whether to use `rsync` instead of `cp`. According to `log2ram`'s author, `rsync` offers better performance.
 
 ```yaml
 log2ram_mail: "false"
