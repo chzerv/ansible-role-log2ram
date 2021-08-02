@@ -23,6 +23,12 @@
     path: "{{ ansible_user_dir }}/.log2ram/log2ram-master/install.sh"
     mode: u+x
 
+- name: Ensure rsync is installed if the 'log2ram_use_rsync' option is true.
+  package:
+    name: rsync
+    state: present
+  when: log2ram_use_rsync | bool
+
 - name: Run the installation script.
   command:
     cmd: "sh install.sh"
