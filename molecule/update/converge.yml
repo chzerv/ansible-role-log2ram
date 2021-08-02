@@ -4,6 +4,7 @@
 
   vars:
     log2ram_state: install
+    log2ram_reboot_after_install: false
 
   pre_tasks:
     - name: Update apt cache on Debian systems.

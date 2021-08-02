@@ -1,6 +1,6 @@
 ---
 log2ram_enable_on_boot: true
-log2ram_reboot_after_install: false
+log2ram_reboot_after_install: true
 log2ram_state: install # install, update, remove
 
 log2ram_size: "40M"

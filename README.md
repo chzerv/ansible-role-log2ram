@@ -23,10 +23,10 @@ log2ram_enable_on_boot: true
 > Whether to enable log2ram on boot or not.
 
 ```yaml
-log2ram_reboot_after_install: false
+log2ram_reboot_after_install: true
 ```
 
-> The project's author recommends to reboot the machine after installing log2ram. **Note** that Ansible will wait for the systems to come back up and continue with the rest of the tasks.
+> Whether to reboot the machine after instralling `log2ram` or not. The project's author recommends to reboot the machine after installing log2ram. **Note** that Ansible will wait for the systems to come back up and continue with the rest of the tasks.
 
 ```yaml
 log2ram_state: install
