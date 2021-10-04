@@ -1,5 +1,5 @@
-{% if ansible_distribution_release == 'stretch' %}
+{% if ansible_distribution == 'Debian' %}
 deb http://packages.azlux.fr/debian/ {{ ansible_distribution_release }} main
 {% else %}
-deb https://packages.azlux.fr/debian/ {{ ansible_distribution_release }} main
+deb http://packages.azlux.fr/debian/ bullseye main
 {% endif %}
