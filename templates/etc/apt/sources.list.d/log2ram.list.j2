@@ -1,1 +1,5 @@
-deb https://packages.azlux.fr/debian/ buster main
+{% if ansible_distribution_release == 'stretch' %}
+deb http://packages.azlux.fr/debian/ {{ ansible_distribution_release }} main
+{% else %}
+deb https://packages.azlux.fr/debian/ {{ ansible_distribution_release }} main
+{% endif %}
