@@ -15,28 +15,18 @@ jobs:
     strategy:
       matrix:
         config:
-          - image: "debian11"
-            tag: latest
-          - image: "debian10"
-            tag: latest
-          - image: "debian9"
-            tag: latest
-          - image: "ubuntu2004"
-            tag: latest
-          - image: "ubuntu1804"
-            tag: latest
-          - image: "centos8"
-            tag: latest
-          - image: "centos7"
-            tag: latest
-          - image: "fedora35"
-            tag: latest
-          - image: "fedora34"
-            tag: latest
-          - image: "fedora33"
-            tag: latest
           - image: "archlinux"
-            tag: latest
+          - image: "debian11"
+          - image: "debian10"
+          - image: "debian9"
+          - image: "ubuntu2004"
+          - image: "ubuntu1804"
+          - image: "rockylinux8"
+          - image: "almalinux8"
+          - image: "centos-stream8"
+          - image: "centos7"
+          - image: "fedora35"
+          - image: "fedora34"
 
     steps:
       - name: Checkout.
