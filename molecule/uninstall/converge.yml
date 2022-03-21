@@ -7,7 +7,7 @@
 
   pre_tasks:
     - name: Update apt cache on Debian systems.
-      apt:
+      ansible.builtin.apt:
         update_cache: true
       when: ansible_os_family == "Debian"
 
@@ -19,9 +19,9 @@
 
   tasks:
     - name: Set correct variable to remove log2ram.
-      set_fact:
+      ansible.builtin.set_fact:
         log2ram_state: remove
 
     - name: "Include log2ram"
-      include_role:
+      ansible.builtin.include_role:
         name: "ansible-role-log2ram"

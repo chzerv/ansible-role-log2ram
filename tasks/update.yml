@@ -1,6 +1,6 @@
 ---
 - name: Update log2ram on Debian systems. # noqa 403
-  apt:
+  ansible.builtin.apt:
     name: log2ram
     state: latest
   when: ansible_os_family == "Debian"
@@ -8,12 +8,12 @@
 - name: Update log2ram on non-Debian systems.
   block:
     - name: Ensure log2ram service is stopped (Non-Debian systems).
-      service:
+      ansible.builtin.service:
         name: log2ram
         state: stopped
 
     - name: Delete the old log2ram directory contents (Non-Debian systems).
-      file:
+      ansible.builtin.file:
         path: "{{ ansible_user_dir }}/.log2ram"
         state: absent
 

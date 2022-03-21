@@ -1,17 +1,17 @@
 ---
 - name: Update apt cache.
-  apt:
+  ansible.builtin.apt:
     update_cache: true
 
 - name: Install required packages.
-  apt:
+  ansible.builtin.apt:
     name:
       - apt-transport-https
       - gpg
     state: present
 
 - name: Create log2ram repository source.
-  template:
+  ansible.builtin.template:
     src: etc/apt/sources.list.d/log2ram.list.j2
     dest: /etc/apt/sources.list.d/log2ram.list
     owner: root
@@ -19,29 +19,29 @@
     mode: 0644
 
 - name: Retrieve log2ram repository key.
-  apt_key:
+  ansible.builtin_apt_key:
     url: https://azlux.fr/repo.gpg.key
     state: present
 
 - name: Update apt cache after log2ram repository is enabled.
-  apt:
+  ansible.builtin.apt:
     update_cache: true
 
 - name: Upgrade packages after log2ram repository is enabled.
-  apt:
+  ansible.builtin.apt:
     upgrade: dist
 
 - name: Ensure rsync is installed if the 'log2ram_use_rsync' option is true.
-  apt:
+  ansible.builtin.apt:
     name: rsync
     state: present
   when: log2ram_use_rsync | bool
 
 - name: Install log2ram.
-  apt:
+  ansible.builtin.apt:
     name: log2ram
     state: present
 
 - name: Reboot system after log2ram is installed.
-  reboot:
+  ansible.builtin.reboot:
   when: log2ram_reboot_after_install | bool

@@ -1,26 +1,26 @@
 ---
 - name: Stop and disable the log2ram service.
-  service:
+  ansible.builtin.service:
     name: log2ram
     state: stopped
     enabled: false
   when: ansible_facts.services['log2ram.service'].state == "running"
 
 - name: Uninstall log2ram through apt (Debian-based systems).
-  apt:
+  ansible.builtin.apt:
     name: log2ram
     state: absent
     purge: true
   when: ansible_os_family == "Debian"
 
 - name: Make the uninstall script executable (Non-Debian systems).
-  file:
+  ansible.builtin.file:
     path: /usr/local/bin/uninstall-log2ram.sh
     mode: u+x
   when: not ansible_os_family == "Debian"
 
 - name: Run the uninstall script (Non-Debian systems).
-  command:
+  ansible.builtin.command:
     cmd: "sh uninstall-log2ram.sh"
     chdir: /usr/local/bin
     warn: false

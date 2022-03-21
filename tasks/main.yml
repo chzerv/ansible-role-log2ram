@@ -9,24 +9,24 @@
   when: log2ram_state == "install"
 
 - name: Check if log2ram is installed (Debian-based systems).
-  package_facts:
+  ansible.builtin.package_facts:
     manager: auto
   when: ansible_os_family == "Debian"
 
 - name: Check if log2ram is installed (Non-Debian systems).
-  stat:
+  ansible.builtin.stat:
     path: /usr/local/bin/log2ram
   register: log2ram_is_installed
   when: not ansible_os_family == "Debian"
 
 - name: Set fact about installed packages in Debian.
-  set_fact:
+  ansible.builtin.set_fact:
     log2ram_installed: "{{ 'true' if 'log2ram' in ansible_facts.packages else 'false' }}"
   when:
     - ansible_os_family == "Debian"
 
 - name: Set fact about installed packages in Non-Debian.
-  set_fact:
+  ansible.builtin.set_fact:
     log2ram_installed: "{{ 'true' if log2ram_is_installed.stat['path'] is defined else 'false' }}"
   when:
     - not ansible_os_family == "Debian"
@@ -38,7 +38,7 @@
     - not log2ram_state == "remove"
 
 - name: Ensure log2ram is started and enabled on boot.
-  service:
+  ansible.builtin.service:
     name: log2ram
     state: started
     enabled: true
@@ -47,7 +47,7 @@
     - not log2ram_state == "remove"
 
 - name: Assert
-  assert:
+  ansible.builtin.assert:
     that:
       - log2ram_installed | bool
     fail_msg: "log2ram installation failed!"
@@ -55,7 +55,7 @@
   when: log2ram_state == "install"
 
 - name: Gather service facts.
-  service_facts:
+  ansible.builtin.service_facts:
 
 - name: Uninstall log2ram.
   include_tasks: uninstall.yml

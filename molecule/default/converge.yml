@@ -8,7 +8,7 @@
 
   pre_tasks:
     - name: Update apt cache on Debian systems.
-      apt:
+      ansible.builtin.apt:
         update_cache: true
       when: ansible_os_family == "Debian"
 
@@ -20,5 +20,5 @@
 
   tasks:
     - name: "Include log2ram"
-      include_role:
+      ansible.builtin.include_role:
         name: "ansible-role-log2ram"
