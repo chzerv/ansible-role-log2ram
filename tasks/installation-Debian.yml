@@ -19,7 +19,7 @@
     mode: 0644
 
 - name: Retrieve log2ram repository key.
-  ansible.builtin_apt_key:
+  ansible.builtin.apt_key:
     url: https://azlux.fr/repo.gpg.key
     state: present
 
