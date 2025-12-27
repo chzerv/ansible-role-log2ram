@@ -3,7 +3,7 @@
   include_tasks: "{{ item }}"
   vars:
     files:
-      - "installation-{{ ansible_os_family }}.yml"
+      - "installation-{{ ansible_facts['os_family'] }}.yml"
       - installation.yml
   loop: "{{ q('first_found', files, errors='ignore' ) }}"
   when: log2ram_state == "install"
