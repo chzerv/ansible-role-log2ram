@@ -1,26 +1,26 @@
 ---
 - name: Create downloads folder.
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.log2ram"
+    path: "{{ ansible_facts['user_dir'] }}/.log2ram"
     state: directory
     mode: 0700
 
 - name: Download log2ram archive.
   ansible.builtin.get_url:
     url: https://github.com/azlux/log2ram/archive/master.tar.gz
-    dest: "{{ ansible_user_dir }}/.log2ram/log2ram.tar.gz"
+    dest: "{{ ansible_facts['user_dir'] }}/.log2ram/log2ram.tar.gz"
     mode: 0600
 
 - name: Extract downloaded archive.
   ansible.builtin.unarchive:
-    src: "{{ ansible_user_dir }}/.log2ram/log2ram.tar.gz"
-    dest: "{{ ansible_user_dir }}/.log2ram/"
+    src: "{{ ansible_facts['user_dir'] }}/.log2ram/log2ram.tar.gz"
+    dest: "{{ ansible_facts['user_dir'] }}/.log2ram/"
     remote_src: true
     mode: 0644
 
 - name: Set execute permissions on the install script.
   ansible.builtin.file:
-    path: "{{ ansible_user_dir }}/.log2ram/log2ram-master/install.sh"
+    path: "{{ ansible_facts['user_dir'] }}/.log2ram/log2ram-master/install.sh"
     mode: u+x
 
 - name: Ensure rsync is installed if the 'log2ram_use_rsync' option is true.
@@ -32,7 +32,7 @@
 - name: Run the installation script.
   ansible.builtin.command:
     cmd: "sh install.sh"
-    chdir: "{{ ansible_user_dir }}/.log2ram/log2ram-master"
+    chdir: "{{ ansible_facts['user_dir'] }}/.log2ram/log2ram-master"
   changed_when: false
 
 - name: Reboot system after log2ram is installed.
