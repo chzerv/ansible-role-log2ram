@@ -1,16 +1,8 @@
 # Ansible Role: log2ram
 
-![Test and release.](https://github.com/chzerv/ansible-role-log2ram/workflows/Test%20and%20release./badge.svg?branch=master)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Ansible Role](https://img.shields.io/ansible/role/50169?color=dodgerblue)](https://galaxy.ansible.com/chzerv/log2ram)
-
-This role installs and configures [log2ram](https://github.com/azlux/log2ram) on Debian, Ubuntu, Archlinux, CentOS and Fedora systems. `log2ram` is mostly useful on systems which use an SD Card, like for example a Raspberry-Pi.
+This role installs and configures [log2ram](https://github.com/azlux/log2ram) on Debian, Ubuntu, ArchLinux, CentOS and Fedora systems. `log2ram` is mostly useful on systems which use an SD Card, like for example a Raspberry-Pi.
 
 On Debian-based systems, the role uses the author's unofficial repository. On other distributions the installation is done manually.
-
-## Requirements
-
-None.
 
 ## Role Variables
 
@@ -80,7 +72,6 @@ log2ram_log_disk_size: "100M"
 
 > The uncompressed zram size.
 
-
 ## Dependencies
 
 None.
@@ -112,11 +103,3 @@ log2ram_path_disk: "/var/log"
 log2ram_use_zl2r: "false"
 log2ram_compression_algorithm: "lz4"
 ```
-
-## License
-
-MIT / BSD
-
-## Author Information
-
-Xristos Zervakis
